@@ -1,0 +1,10 @@
+version: '3.1'
+
+services:
+  ansible:
+    build:
+      context: .
+      args:
+        CACHE_BUST: ${CACHE_BUST:-0}
+        REBUILD: ${REBUILD:-0}
+    image: gsong/ansible
