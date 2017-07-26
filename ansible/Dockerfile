@@ -2,6 +2,14 @@ FROM alpine:edge
 ENV PYTHONUNBUFFERED 1
 
 ARG REBUILD=0
+
+WORKDIR /app
+
+RUN echo $'source /usr/share/bash-completion/bash_completion\n\
+export HISTFILE=$HOME/.bash_history/history\n\
+PS1=\'\u:\w\$ \''\
+>> /etc/bash.bashrc
+
 RUN apk add --update --no-cache --repository http://dl-3.alpinelinux.org/alpine/edge/testing/ \
   ansible \
   bash \
@@ -27,12 +35,21 @@ RUN apk add --update --no-cache \
     py-pip \
     python2-dev
 
-RUN echo $'source /usr/share/bash-completion/bash_completion\n\
-export HISTFILE=$HOME/.bash_history/history\n\
-PS1=\'\u:\w\$ \''\
->> /etc/bash.bashrc
-
-WORKDIR /app
+# Workaround for Ansible linode module bug
+# See https://github.com/ansible/ansible/pull/23874 for more info
+RUN apk add --update --no-cache \
+    gcc \
+    git \
+    musl-dev \
+    py-pip \
+    python2-dev \
+  && pip install --no-cache-dir git+https://github.com/InTheCloudDan/ansible.git@linode-fix \
+  && apk del \
+    gcc \
+    git \
+    musl-dev \
+    py-pip \
+    python2-dev
 
 ARG CACHE_BUST=0
 RUN mkdir /ansible-common && cd /ansible-common \
