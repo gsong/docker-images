@@ -1,0 +1,20 @@
+version: '3.3'
+
+services:
+  db:
+    image: gsong/postgres-dev
+    container_name: myapp_db_dev
+    env_file: .env
+    environment:
+      ANSIBLE_LOCAL_TEMP: /tmp
+      ANSIBLE_REMOTE_TEMP: /tmp
+      ANSIBLE_RETRY_FILES_ENABLED: 'False'
+      ANSIBLE_ROLES_PATH: /ansible-common/roles
+    networks:
+      - services
+    volumes:
+      - ${ANSIBLE_VARS_DIR:-./.data/ansible-vars}:/ansible-vars:ro
+      - ./.data/db:/var/lib/postgresql/data
+      - ./.data/services/db/bash_history:/home/postgres/.bash_history
+      - ./ansible/etc/group_vars:/etc/ansible/group_vars:ro
+      - ./ansible/etc/hosts:/etc/ansible/hosts:ro
