@@ -1,10 +1,6 @@
 FROM alpine:edge
 ENV PYTHONUNBUFFERED 1
 
-ARG REBUILD=0
-
-WORKDIR /app
-
 RUN echo $'source /usr/share/bash-completion/bash_completion\n\
 export HISTFILE=$HOME/.bash_history/history\n\
 PS1=\'\u:\w\$ \''\
@@ -51,6 +47,7 @@ RUN apk add --update --no-cache \
     py-pip \
     python2-dev
 
-ARG CACHE_BUST=0
 RUN mkdir /ansible-common && cd /ansible-common \
   && curl -LsS https://api.github.com/repos/gsong/ansible-common/tarball | tar zx --strip 1
+
+WORKDIR /app

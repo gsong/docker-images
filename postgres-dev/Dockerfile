@@ -1,8 +1,6 @@
 FROM postgres:9.6
 ENV PYTHONUNBUFFERED 1
 
-ARG REBUILD=0
-
 RUN echo 'export HISTFILE=$HOME/.bash_history/history' >> /etc/bash.bashrc
 
 RUN apt-get update && apt-get install --no-install-recommends -y \
@@ -20,6 +18,5 @@ RUN curl -LsS https://bootstrap.pypa.io/get-pip.py -o /tmp/get-pip.py \
 COPY ./requirements.txt /tmp/
 RUN pip install --no-cache-dir -r /tmp/requirements.txt
 
-ARG CACHE_BUST=0
 RUN mkdir /ansible-common && cd /ansible-common \
   && curl -LsS https://api.github.com/repos/gsong/ansible-common/tarball | tar zx --strip 1
