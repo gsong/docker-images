@@ -2,7 +2,7 @@ version: '3.3'
 
 services:
   db:
-    image: gsong/postgres-dev
+    image: my_app/postgres-dev
     container_name: myapp_db_dev
     env_file: .env
     environment:
