@@ -10,11 +10,11 @@ RUN apt-get update && apt-get install --no-install-recommends -y \
   libcurl4-openssl-dev \
   libssl-dev \
   python-dev \
+  python-pip \
   && rm -rf /var/lib/apt/lists/*
 
-RUN curl -LsS https://bootstrap.pypa.io/get-pip.py -o /tmp/get-pip.py \
-  && python /tmp/get-pip.py \
-  && rm /tmp/get-pip.py
+RUN pip install -U pip
+RUN pip install --no-cache-dir setuptools wheel
 COPY ./requirements.txt /tmp/
 RUN pip install --no-cache-dir -r /tmp/requirements.txt
 
