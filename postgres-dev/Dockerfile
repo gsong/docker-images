@@ -1,4 +1,4 @@
-FROM postgres:9.6
+FROM postgres:latest
 ENV PYTHONUNBUFFERED 1
 
 RUN echo 'export HISTFILE=$HOME/.bash_history/history' >> /etc/bash.bashrc
