@@ -1,0 +1,7 @@
+version: '3.7'
+
+services:
+  python:
+    build:
+      context: .
+    image: gsong/python:2.7.15-test

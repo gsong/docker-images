@@ -4,4 +4,4 @@ services:
   node:
     build:
       context: .
-    image: "gsong/node8-chrome"
+    image: gsong/node:6

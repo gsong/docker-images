@@ -1,7 +1,7 @@
 version: '3.7'
 
 services:
-  python:
+  db:
     build:
       context: .
-    image: "gsong/python2.7.15-test"
+    image: gsong/postgres-dev:9.6
