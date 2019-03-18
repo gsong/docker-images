@@ -1,2 +1,2 @@
-# containers
-Common container definitions
+# Docker Images
+Common Docker image definitions
