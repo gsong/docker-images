@@ -1,4 +1,4 @@
-FROM python:3.7.2
+FROM python:3.7
 ENV PYTHONUNBUFFERED 1
 
 COPY requirements.txt /tmp/

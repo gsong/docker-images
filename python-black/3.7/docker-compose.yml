@@ -4,4 +4,4 @@ services:
   python:
     build:
       context: .
-    image: "gsong/python:3.7.2-black"
+    image: "gsong/python:3.7-black"
