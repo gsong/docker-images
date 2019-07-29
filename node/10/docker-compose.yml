@@ -4,4 +4,4 @@ services:
   node:
     build:
       context: .
-    image: gsong/node:10
+    image: veeloinc/node:10

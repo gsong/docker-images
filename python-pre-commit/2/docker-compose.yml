@@ -4,4 +4,4 @@ services:
   python:
     build:
       context: .
-    image: "veeloinc/python:2-pre-commit"
+    image: veeloinc/python:2-pre-commit
