@@ -1,4 +1,4 @@
-FROM python:2.7.15
+FROM python:2.7.17
 ENV PYTHONUNBUFFERED 1
 
 LABEL Name="Python Test" \
