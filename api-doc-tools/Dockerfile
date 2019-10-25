@@ -1,5 +1,8 @@
 FROM node:lts
 
+LABEL Name="Open API doc tools" \
+      Version="1.0"
+
 RUN npm -g install \
       browser-sync \
       chokidar-cli \

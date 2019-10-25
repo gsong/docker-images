@@ -1,8 +1,8 @@
 FROM python:2.7.15
 ENV PYTHONUNBUFFERED 1
 
-LABEL Name="Veelo Python Test" \
-      Version="1.0"
+LABEL Name="Python Test" \
+      Version="2"
 
 RUN apt-get update && apt-get install --no-install-recommends -y \
   libmemcached-dev \
