@@ -4,4 +4,4 @@ services:
   db:
     build:
       context: .
-    image: gsong/postgres-dev:10.6
+    image: gsong/postgres-dev:9
