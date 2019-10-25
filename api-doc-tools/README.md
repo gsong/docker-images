@@ -1,4 +1,4 @@
-# Veelo API Doc Tools
+# Open API Doc Tools
 
 - Linter (speccy)
 - HTML doc generator (redoc)
