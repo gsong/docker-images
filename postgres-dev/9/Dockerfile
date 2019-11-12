@@ -1,8 +1,8 @@
 FROM postgres:9
 ENV PYTHONUNBUFFERED 1
 
-LABEL Name="PostgreSQL"
-LABEL Version="9"
+LABEL Name="PostgreSQL" \
+      Version="9"
 
 RUN echo 'export HISTFILE=$HOME/.bash_history/history' >> /etc/bash.bashrc
 
