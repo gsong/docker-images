@@ -12,6 +12,7 @@ RUN npm -g install \
       redoc-cli \
       serve \
       speccy \
+      swagger-cli \
       && npm cache clean --force
 
 WORKDIR /app
