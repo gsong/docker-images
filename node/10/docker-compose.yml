@@ -1,0 +1,7 @@
+version: '3.7'
+
+services:
+  node:
+    build:
+      context: .
+    image: veeloinc/node:10

@@ -1,4 +1,4 @@
-# node:12 image
+# node:10 image
 
 Install:
 
