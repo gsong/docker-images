@@ -1,7 +1,0 @@
-version: '3.7'
-
-services:
-  db:
-    build:
-      context: .
-    image: gsong/postgres-dev:10

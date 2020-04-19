@@ -4,7 +4,7 @@
 #
 #    pip-compile
 #
-ansible==2.9.6
+ansible==2.9.7            # via -r requirements.in
 cffi==1.14.0              # via cryptography
 cryptography==2.9         # via ansible
 jinja2==2.11.2            # via ansible
