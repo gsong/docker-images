@@ -4,11 +4,14 @@
 #
 #    pip-compile
 #
-ansible==2.9.13           # via -r requirements.in
-cffi==1.14.2              # via cryptography
-cryptography==3.1         # via ansible
-jinja2==2.11.2            # via ansible
+ansible-base==2.10.1      # via ansible
+ansible==2.10.0           # via -r requirements.in
+cffi==1.14.3              # via cryptography
+cryptography==3.1.1       # via ansible-base
+jinja2==2.11.2            # via ansible-base
 markupsafe==1.1.1         # via jinja2
+packaging==20.4           # via ansible-base
 pycparser==2.20           # via cffi
-pyyaml==5.3.1             # via ansible
-six==1.15.0               # via cryptography
+pyparsing==2.4.7          # via packaging
+pyyaml==5.3.1             # via ansible-base
+six==1.15.0               # via cryptography, packaging
