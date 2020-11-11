@@ -4,8 +4,8 @@
 #
 #    pip-compile
 #
-ansible-base==2.10.2      # via ansible
-ansible==2.10.1           # via -r requirements.in
+ansible-base==2.10.3      # via ansible
+ansible==2.10.3           # via -r requirements.in
 cffi==1.14.3              # via cryptography
 cryptography==3.2.1       # via ansible-base
 jinja2==2.11.2            # via ansible-base
