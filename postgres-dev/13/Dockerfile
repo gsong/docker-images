@@ -11,6 +11,7 @@ RUN apt-get update && apt-get install --no-install-recommends -y \
   curl \
   gcc \
   libcurl4-openssl-dev \
+  libpython3-dev \
   libssl-dev \
   python3-pip \
   && apt-get clean \
@@ -18,7 +19,7 @@ RUN apt-get update && apt-get install --no-install-recommends -y \
 
 RUN pip3 install --no-cache-dir setuptools
 COPY ./requirements.txt /tmp/
-RUN pip3 install --no-cache-dir -r /tmp/requirements.txt
+RUN CRYPTOGRAPHY_DONT_BUILD_RUST=1 pip3 install --no-cache-dir -r /tmp/requirements.txt
 
 RUN mkdir /ansible-common && cd /ansible-common \
   && curl -LsS https://api.github.com/repos/gsong/ansible-common/tarball | tar zx --strip 1
