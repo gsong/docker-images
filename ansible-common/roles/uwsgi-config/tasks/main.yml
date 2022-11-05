@@ -1,0 +1,18 @@
+# Add nginx available sites configurations
+# vars:
+#   - container_app_root
+#   - host_app_root
+#   - hostnames
+#   - uwsgi_env
+#   - uwsgi_module
+---
+- name: create working directory
+  file:
+    path: "{{ host_app_root }}/.data/uwsgi"
+    state: directory
+
+- name: make configuration files
+  template:
+    src: app.ini.j2
+    dest: "{{ host_app_root }}/.data/uwsgi/{{ item.split('.')[0] }}.ini"
+  with_items: "{{ hostnames }}"

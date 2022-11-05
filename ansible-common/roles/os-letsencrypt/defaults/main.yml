@@ -1,0 +1,11 @@
+---
+certbot_flags:
+
+letsencrypt_root: /etc/letsencrypt
+letsencrypt_cron_hour: "{{ 11 | random }}"
+letsencrypt_cron_hours: "{{ letsencrypt_cron_hour }},{{ letsencrypt_cron_hour | int + 12 }}"
+letsencrypt_cron_minute: "{{ 59 | random }}"
+
+web_service_name: web
+docker_compose: /usr/local/bin/docker-compose
+host_app_root: /app

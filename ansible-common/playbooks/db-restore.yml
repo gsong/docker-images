@@ -1,0 +1,7 @@
+# Restore DB container with export file
+---
+- name: Restore DB from S3 download
+  hosts: all
+  remote_user: "{{ root_user | default('root') }}"
+  roles:
+    - db-restore

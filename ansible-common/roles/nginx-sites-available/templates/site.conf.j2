@@ -1,0 +1,27 @@
+# {{ ansible_managed }}
+
+{% set label = item.split('.')[0] %}
+upstream {{ label }} {
+    server unix:///usr/local/var/run/{{ label }}.sock;
+}
+
+server {
+  root {{ nginx_document_root }};
+
+  # Django media and static files
+  location ~ /(media|static)/  {
+    gzip_static on;
+    expires max;
+    add_header Cache-Control public;
+  }
+
+  # Finally, send all non-media requests to the Django server.
+  location / {
+    uwsgi_pass  {{ label }};
+    include     /etc/nginx/uwsgi_params;
+  }
+
+  {% include 'shared.j2' %}
+
+  include /etc/nginx/shared/ssl.conf;
+}

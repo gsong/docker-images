@@ -1,0 +1,37 @@
+# Secure sshd
+# vars:
+#   - cache_valid_time
+---
+- name: disable password login
+  lineinfile:
+    dest: /etc/ssh/sshd_config
+    regexp: ^PasswordAuthentication
+    line: PasswordAuthentication no
+    state: present
+  notify:
+    - restart sshd
+
+# See https://github.com/mozilla/ssh_scan
+- name: strict key exchange algorithms
+  lineinfile:
+    dest: /etc/ssh/sshd_config
+    regexp: ^KexAlgorithms
+    line: KexAlgorithms curve25519-sha256@libssh.org,ecdh-sha2-nistp521,ecdh-sha2-nistp384,ecdh-sha2-nistp256,diffie-hellman-group-exchange-sha256
+    state: present
+  notify:
+    - restart sshd
+
+- name: strict MAC algorithms
+  lineinfile:
+    dest: /etc/ssh/sshd_config
+    regexp: ^MACs
+    line: MACs hmac-sha2-512-etm@openssh.com,hmac-sha2-256-etm@openssh.com,umac-128-etm@openssh.com,hmac-sha2-512,hmac-sha2-256,umac-128@openssh.com
+    state: present
+  notify:
+    - restart sshd
+
+- name: install fail2ban
+  apt:
+    name: fail2ban
+    state: latest
+    update_cache: yes

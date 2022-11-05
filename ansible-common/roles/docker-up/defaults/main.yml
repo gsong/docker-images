@@ -1,0 +1,4 @@
+---
+containers: ''  # space separated list of containers to act on
+docker_compose: docker-compose
+host_app_root: /app

@@ -1,0 +1,7 @@
+# Pull Docker images
+# vars:
+#   - docker_images
+---
+- name: pull Docker images
+  command: docker pull {{ item }}
+  with_items: "{{ docker_images }}"

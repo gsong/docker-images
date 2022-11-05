@@ -1,0 +1,14 @@
+# {{ ansible_managed }}
+
+server {
+  root {{ nginx_document_root }};
+  return 503;
+  error_page 503 @maintenance;
+  location @maintenance {
+    rewrite ^(.*)$ /maintenance.html break;
+  }
+
+  {% include 'shared.j2' %}
+
+  include /etc/nginx/shared/ssl.conf;
+}

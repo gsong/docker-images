@@ -1,0 +1,13 @@
+# Safe upgrade OS pacakge
+# vars:
+#   - cache_valid_time?
+---
+- name: safe-upgrade OS packages
+  apt:
+    upgrade: safe
+    update_cache: yes
+    cache_valid_time: "{{ cache_valid_time }}"
+  notify:
+    - reboot if needed
+    - wait a moment
+    - wait for server to start

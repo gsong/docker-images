@@ -1,0 +1,7 @@
+# Restore local db with export file
+---
+- name: Restore DB from S3 download
+  hosts: localhost
+  connection: local
+  roles:
+    - local-db-restore

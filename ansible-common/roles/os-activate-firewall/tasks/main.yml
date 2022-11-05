@@ -1,0 +1,32 @@
+# Install and activate UFW
+# vars:
+#   - cache_valid_time
+---
+- name: install ufw
+  package:
+    name: ufw
+    state: latest
+
+- name: allow outgoing
+  ufw:
+    direction: outgoing
+    policy: allow
+
+- name: deny incoming
+  ufw:
+    direction: incoming
+    policy: deny
+
+- name: allow ssh, http, https
+  ufw:
+    port: "{{ item }}"
+    proto: tcp
+    rule: allow
+  with_items:
+    - http
+    - https
+    - ssh
+
+- name: enable ufw
+  ufw:
+    state: enabled

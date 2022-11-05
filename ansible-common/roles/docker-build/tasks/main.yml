@@ -1,0 +1,9 @@
+# Build Docker images
+# vars:
+#   - docker_compose?
+#   - host_app_root?
+---
+- name: build Docker images
+  command: "{{ docker_compose}} build --parallel"
+  args:
+    chdir: "{{ host_app_root }}"

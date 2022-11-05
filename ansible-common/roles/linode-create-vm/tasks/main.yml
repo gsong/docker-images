@@ -1,0 +1,34 @@
+# Procure a new Linode VM
+# vars:
+#   - linode_name
+#   - linode_image?
+#   - linode_regions?
+#   - linode_type?
+---
+- name: procure VM
+  linode_v4:
+    authorized_keys:
+      - "{{ lookup('file', '{{ ssh_pub_key }}') }}"
+    region: "{{ linode_region }}"
+    type: "{{linode_type}}"
+    image: "{{ linode_image }}"
+    label: "{{ linode_name }}"
+    state: present
+  delegate_to: localhost
+  register: linode
+
+- name: show the registered Linode VM
+  debug:
+    var: linode
+
+- name: add new host to in-memory inventory
+  add_host:
+    hostname: "{{ linode.instance.ipv4[0] }}"
+    groupname: linode
+
+- name: wait for server to start
+  wait_for:
+    host: "{{ linode.instance.ipv4[0] }}"
+    port: 22
+    state: started
+  delegate_to: localhost

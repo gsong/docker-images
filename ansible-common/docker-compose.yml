@@ -1,0 +1,8 @@
+services:
+  ansible:
+    build:
+      context: .
+    image: gsong/ansible-common
+    platform: linux/arm64
+    volumes:
+      - .:/ansible-common

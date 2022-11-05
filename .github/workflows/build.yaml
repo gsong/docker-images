@@ -20,6 +20,16 @@ jobs:
       DOCKERHUB_USERNAME: ${{ secrets.DOCKERHUB_USERNAME }}
       DOCKERHUB_TOKEN: ${{ secrets.DOCKERHUB_TOKEN }}
 
+  build-ansible-common:
+    uses: ./.github/workflows/_build_push_image.yaml
+    with:
+      image_tags: gsong/ansible-common
+      context: ./ansible-common
+      platforms: linux/arm64
+    secrets:
+      DOCKERHUB_USERNAME: ${{ secrets.DOCKERHUB_USERNAME }}
+      DOCKERHUB_TOKEN: ${{ secrets.DOCKERHUB_TOKEN }}
+
   build-postgres:
     strategy:
       matrix:

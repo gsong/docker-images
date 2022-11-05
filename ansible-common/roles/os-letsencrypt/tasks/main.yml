@@ -1,0 +1,47 @@
+# Install letsencrypt SSL cert
+# vars:
+#   - certbot_flags?
+#   - docker_compose?
+#   - host_app_root?
+#   - hostnames
+#   - letsencrypt_cron_hours?
+#   - letsencrypt_cron_minute?
+#   - letsencrypt_email
+#   - letsencrypt_root?
+#   - web_service_name?
+---
+- command: snap install core
+- command: snap refresh core
+
+- name: install certbot CLI
+  community.general.snap:
+    name: certbot
+    classic: yes
+
+- name: symlink certbot
+  file:
+    src: /snap/bin/certbot
+    dest: /usr/bin/certbot
+    state: link
+
+- name: create the configuration file
+  template:
+    src: cli.ini.j2
+    dest: "{{ letsencrypt_root }}/cli.ini"
+  loop: "{{ hostnames }}"
+
+- name: get the certificates
+  command: certbot certonly {{ certbot_flags }} -d {{ item }}
+  args:
+    creates: "{{ letsencrypt_root }}/live/{{ item }}"
+  loop: "{{ hostnames }}"
+
+- name: install autorenew cron job
+  cron:
+    name: letsencrypt renew
+    job: >
+      certbot renew --agree-tos >/var/tmp/letsencrypt.txt 2>&1
+      && cd {{ host_app_root }}
+      && {{ docker_compose }} restart {{ web_service_name }} >>/var/tmp/letsencrypt.txt 2>&1
+    hour: "{{ letsencrypt_cron_hours }}"
+    minute: "{{ letsencrypt_cron_minute }}"

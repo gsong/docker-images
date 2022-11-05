@@ -1,0 +1,18 @@
+# {{ ansible_managed }}
+
+{% set label = item.split('.')[0] %}
+[uwsgi]
+env = {{ uwsgi_env }}
+chdir = {{ container_app_root }}
+module = {{ uwsgi_module }}
+socket = /usr/local/var/run/{{ label }}.sock
+master = true
+vacuum = true
+max-request = 100
+reload-on-as = 1024
+reload-on-rss = 256
+workers = 4
+die-on-term = true
+
+req-logger = file:/var/log/uwsgi/access.log
+logger = file:/var/log/uwsgi/error.log

@@ -1,0 +1,23 @@
+# Restore the database based on export file
+# vars:
+#   - db_export_download_dir
+#   - db_export_url
+#   - ignore_pg_restore_error
+#   - postgres_db
+---
+
+- name: download export file
+  get_url:
+    url: "{{ db_export_url }}"
+    dest: "{{ db_export_download_dir }}"
+  register: _db_export
+
+- name: drop the current database
+  command: dropdb --if-exists {{ postgres_db }}
+
+- name: create the database
+  command: createdb {{ postgres_db }}
+
+- name: restore the database
+  command: pg_restore -O -c --if-exists -d {{ postgres_db }} {{ _db_export.dest }}
+  ignore_errors: "{{ ignore_pg_restore_error }}"

@@ -1,6 +1,11 @@
 version: 2
 updates:
   - package-ecosystem: "pip-compile"
+    directory: "/ansible-common"
+    schedule:
+      interval: "weekly"
+
+  - package-ecosystem: "pip-compile"
     directory: "/postgres-dev"
     schedule:
       interval: "weekly"

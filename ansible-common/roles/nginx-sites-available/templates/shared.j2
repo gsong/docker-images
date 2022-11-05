@@ -1,0 +1,5 @@
+server_name {{ item }};
+
+ssl_certificate_key     /etc/ssl/live/{{ item }}/privkey.pem;
+ssl_certificate         /etc/ssl/live/{{ item }}/fullchain.pem;
+ssl_trusted_certificate /etc/ssl/live/{{ item }}/fullchain.pem;
