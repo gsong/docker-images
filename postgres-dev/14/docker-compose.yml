@@ -2,5 +2,5 @@ services:
   db:
     build:
       context: .
-    image: gsong/postgres-dev:13
+    image: gsong/postgres-dev:14
     platform: linux/arm64
