@@ -46,7 +46,8 @@ jobs:
       - uses: docker/build-push-action@v3
         with:
           tags: gsong/postgres-dev:${{ matrix.version }}
-          context: ./postgres-dev/${{ matrix.version }}
+          context: ./postgres-dev
+          build-args: VERSION=${{ matrix.version }}
           platforms: linux/arm64
           push: true
           cache-to: type=gha,mode=max

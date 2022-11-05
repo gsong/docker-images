@@ -1,6 +1,0 @@
-services:
-  db:
-    build:
-      context: .
-    image: gsong/postgres-dev:13
-    platform: linux/arm64
