@@ -3,7 +3,7 @@ name: zBuild and push Docker Image
 on:
   workflow_call:
     inputs:
-      image_tags:
+      tags:
         type: string
         required: true
         description: image tag name, e.g. ns/image:tag
@@ -23,7 +23,7 @@ on:
         required: true
 
 concurrency:
-  group: build-${{ inputs.image_tags }}-${{ inputs.platforms }}
+  group: build-${{ inputs.tags }}-${{ inputs.platforms }}
   cancel-in-progress: true
 
 jobs:
@@ -39,10 +39,10 @@ jobs:
           password: ${{ secrets.DOCKERHUB_TOKEN }}
       - uses: docker/build-push-action@v3
         with:
-          tags: ${{ inputs.image_tags }}
+          tags: ${{ inputs.tags }}
           context: ${{ inputs.context }}
           platforms: ${{ inputs.platforms }}
-          build-args: ${{ inputs.build_args }}
+          build-args: ${{ inputs.build-args }}
           pull: true
           push: true
           cache-to: type=gha,mode=max

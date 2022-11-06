@@ -16,7 +16,7 @@ jobs:
   build-nginx:
     uses: ./.github/workflows/_build_push_image.yaml
     with:
-      image_tags: gsong/nginx
+      tags: gsong/nginx
       context: ./nginx
     secrets:
       DOCKERHUB_USERNAME: ${{ secrets.DOCKERHUB_USERNAME }}
@@ -25,7 +25,7 @@ jobs:
   build-ansible-common:
     uses: ./.github/workflows/_build_push_image.yaml
     with:
-      image_tags: gsong/ansible-common
+      tags: gsong/ansible-common
       context: ./ansible-common
       platforms: linux/arm64
     secrets:
@@ -38,7 +38,7 @@ jobs:
         version: [13, 14, 15, latest]
     uses: ./.github/workflows/_build_push_image.yaml
     with:
-      image_tags: gsong/postgres-dev:${{ matrix.version }}
+      tags: gsong/postgres-dev:${{ matrix.version }}
       context: ./postgres-dev
       platforms: linux/arm64
       build-args: VERSION=${{ matrix.version }}
