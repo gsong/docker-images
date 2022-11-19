@@ -32,7 +32,7 @@ jobs:
       DOCKERHUB_USERNAME: ${{ secrets.DOCKERHUB_USERNAME }}
       DOCKERHUB_TOKEN: ${{ secrets.DOCKERHUB_TOKEN }}
 
-  build-postgres:
+  build-postgres-dev:
     strategy:
       matrix:
         version: [13, 14, 15, latest]
@@ -41,6 +41,20 @@ jobs:
       tags: gsong/postgres-dev:${{ matrix.version }}
       context: ./postgres-dev
       platforms: linux/arm64
+      build-args: VERSION=${{ matrix.version }}
+    secrets:
+      DOCKERHUB_USERNAME: ${{ secrets.DOCKERHUB_USERNAME }}
+      DOCKERHUB_TOKEN: ${{ secrets.DOCKERHUB_TOKEN }}
+
+  build-postgres-prisma:
+    strategy:
+      matrix:
+        version: [14, 15, latest]
+    uses: ./.github/workflows/_build_push_image.yaml
+    with:
+      tags: gsong/postgres-prisma:${{ matrix.version }}
+      context: ./postgres-prisma
+      platforms: linux/arm64,linux/amd64
       build-args: VERSION=${{ matrix.version }}
     secrets:
       DOCKERHUB_USERNAME: ${{ secrets.DOCKERHUB_USERNAME }}

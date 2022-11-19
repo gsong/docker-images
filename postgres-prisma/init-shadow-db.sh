@@ -1,0 +1,7 @@
+#!/usr/bin/env bash
+set -e
+
+psql -v ON_ERROR_STOP=1 --username "$POSTGRES_USER" --dbname "$POSTGRES_DB" <<- EOSQL
+	CREATE DATABASE ${SHADOW_DB};
+	GRANT ALL PRIVILEGES ON DATABASE ${SHADOW_DB} TO ${POSTGRES_USER};
+EOSQL
