@@ -2,4 +2,6 @@ services:
   db:
     build:
       context: .
-    image: gsong/postgres-prisma
+      args:
+        VERSION: 14
+    image: gsong/postgres-prisma:14
