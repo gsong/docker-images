@@ -3,7 +3,7 @@ FROM postgres:$VERSION
 ENV PYTHONUNBUFFERED 1
 
 HEALTHCHECK --interval=5s --timeout=5s --start-period=30s \
-  CMD pg_isready
+  CMD pg_isready -U ${POSTGRES_USER}
 
 RUN echo 'export HISTFILE=$HOME/.bash_history/history' >> /etc/bash.bashrc
 
