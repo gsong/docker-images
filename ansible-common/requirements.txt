@@ -4,17 +4,17 @@
 #
 #    pip-compile
 #
-ansible==6.6.0
+ansible==7.1.0
     # via -r requirements.in
-ansible-core==2.13.6
+ansible-core==2.14.1
     # via ansible
-certifi==2022.9.24
+certifi==2022.12.7
     # via requests
 cffi==1.15.1
     # via cryptography
 charset-normalizer==2.1.1
     # via requests
-cryptography==38.0.3
+cryptography==39.0.0
     # via ansible-core
 idna==3.4
     # via requests
@@ -24,17 +24,15 @@ linode-api4==5.3.0
     # via -r requirements.in
 markupsafe==2.1.1
     # via jinja2
-packaging==21.3
+packaging==22.0
     # via ansible-core
 pycparser==2.21
     # via cffi
-pyparsing==3.0.9
-    # via packaging
 pyyaml==6.0
     # via ansible-core
 requests==2.28.1
     # via linode-api4
 resolvelib==0.8.1
     # via ansible-core
-urllib3==1.26.12
+urllib3==1.26.13
     # via requests
