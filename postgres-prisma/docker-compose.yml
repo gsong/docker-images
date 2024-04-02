@@ -3,5 +3,5 @@ services:
     build:
       context: .
       args:
-        VERSION: 14
-    image: gsong/postgres-prisma:14
+        VERSION: 16.1
+    image: gsong/postgres-prisma:16-alpine
