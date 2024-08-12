@@ -1,7 +1,0 @@
-services:
-  db:
-    build:
-      context: .
-      args:
-        VERSION: 16.2
-    image: gsong/postgres-prisma:16-alpine
