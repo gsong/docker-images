@@ -1,5 +1,5 @@
 group "default" {
-  targets = ["db-16_2", "db-16_3"]
+  targets = ["db-16_2", "db-16_3", "db-16_4"]
 }
 
 target "db-16_2" {
@@ -20,4 +20,14 @@ target "db-16_3" {
     VERSION = "16.3"
   }
   tags = ["gsong/postgres-prisma:16.3-alpine"]
+}
+
+target "db-16_4" {
+  context = "."
+  dockerfile = "Dockerfile"
+  platforms = ["linux/amd64", "linux/arm64"]
+  args = {
+    VERSION = "16.4"
+  }
+  tags = ["gsong/postgres-prisma:16.4-alpine"]
 }
