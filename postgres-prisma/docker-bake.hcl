@@ -1,33 +1,13 @@
 group "default" {
-  targets = ["db-16_2", "db-16_3", "db-16_4"]
+  targets = ["db-16_6"]
 }
 
-target "db-16_2" {
+target "db-16_6" {
   context = "."
   dockerfile = "Dockerfile"
   platforms = ["linux/amd64", "linux/arm64"]
   args = {
-    VERSION = "16.2"
+    VERSION = "16.6"
   }
-  tags = ["gsong/postgres-prisma:16.2-alpine"]
-}
-
-target "db-16_3" {
-  context = "."
-  dockerfile = "Dockerfile"
-  platforms = ["linux/amd64", "linux/arm64"]
-  args = {
-    VERSION = "16.3"
-  }
-  tags = ["gsong/postgres-prisma:16.3-alpine"]
-}
-
-target "db-16_4" {
-  context = "."
-  dockerfile = "Dockerfile"
-  platforms = ["linux/amd64", "linux/arm64"]
-  args = {
-    VERSION = "16.4"
-  }
-  tags = ["gsong/postgres-prisma:16.4-alpine"]
+  tags = ["gsong/postgres-prisma:16.6-alpine"]
 }
